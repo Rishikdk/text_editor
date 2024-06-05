@@ -1,6 +1,9 @@
 import React from "react";
 // import { useState } from "react";
 import Button from "./assets/components/Button.jsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./App.css";
 
 class App extends React.Component {
@@ -11,27 +14,36 @@ class App extends React.Component {
     };
   }
 
+  notify = (message) => {
+    toast(message);
+  };
+
   // //on change event
   handleLowerCase = () => {
     this.setState({ text: this.state.text.toLowerCase() });
+    this.notify("Converted to Lower case successfully");
+    // <Notification notify={notify} />;
   };
 
   handleCapitalized = () => {
     this.setState({
       text: this.state.text.replace(/\b\w/g, (char) => char.toUpperCase()),
     });
+    this.notify("Converted to Capitalized successfully");
   };
 
   handleReverse = () => {
     this.setState({
       text: this.state.text.split("").reverse().join(""),
     });
+    this.notify("Converted to Reverse successfully");
   };
 
   handleClear = () => {
     this.setState({
       text: "",
     });
+    this.notify("Cleared successfully");
   };
 
   // handleUpperCase = () => {
@@ -80,6 +92,7 @@ class App extends React.Component {
               this.setState({
                 text: this.state.text.toUpperCase(),
               });
+              this.notify("Converted to Upper case successfully");
             }}
             btnName="Upper case"
           />
@@ -87,6 +100,7 @@ class App extends React.Component {
           <Button onClick={this.handleClear} btnName="Clear" />
           <Button onClick={this.handleReverse} btnName="Reverse" />
         </div>
+        <ToastContainer />
       </div>
     );
   }
