@@ -14,6 +14,7 @@ class App extends React.Component {
     };
   }
 
+  //for passing the notification message.
   notify = (message) => {
     toast(message);
   };
