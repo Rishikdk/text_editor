@@ -16,6 +16,24 @@ class App extends React.Component {
     this.setState({ text: this.state.text.toLowerCase() });
   };
 
+  handleCapitalized = () => {
+    this.setState({
+      text: this.state.text.replace(/\b\w/g, (char) => char.toUpperCase()),
+    });
+  };
+
+  handleReverse = () => {
+    this.setState({
+      text: this.state.text.split("").reverse().join(""),
+    });
+  };
+
+  handleClear = () => {
+    this.setState({
+      text: "",
+    });
+  };
+
   // handleUpperCase = () => {
   //   this.setState({ text: this.state.text.toUpperCase() });
   // };
@@ -56,17 +74,18 @@ class App extends React.Component {
             Upper case
           </button> */}
 
-          <Button click={this.handleLowerCase} btnName="Lower case" />
+          <Button onClick={this.handleLowerCase} btnName="Lower case" />
           <Button
-            click={() => {
+            onClick={() => {
               this.setState({
                 text: this.state.text.toUpperCase(),
               });
             }}
             btnName="Upper case"
           />
-          <Button btnName="Reverse" />
-          <Button btnName="Clear" />
+          <Button onClick={this.handleCapitalized} btnName="Capitalized" />
+          <Button onClick={this.handleClear} btnName="Clear" />
+          <Button onClick={this.handleReverse} btnName="Reverse" />
         </div>
       </div>
     );
